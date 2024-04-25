@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full h-full absolute top-0 start-0 p-4">
+<div class="flex flex-col w-full h-full absolute top-0 start-0 p-4 ">
   <div class="flex flex-row items-end gap-1">
     <img src="./assets/Angular_Logo.svg" class="w-[150px]">
     <span class="text-3xl opacity-50">+</span>
@@ -10,84 +10,89 @@
 
   </div>
   <mat-divider class="!mt-2 !mb-4"></mat-divider>
-
-  @if(chatHistory.length==0 && prompt ==''){
-  <div class="flex flex-col opacity-50 gap-3">
-    <span class="text-4xl">Hi.</span>
-    <span class="text-3xl">How can we help you.</span>
-  </div>
-  }
-
-  <div class=" w-full overflow-auto mb-5">
-    @for (item of chatHistory; track $index) {
-    <div [class]="item?.role=='model'?'bg-gray-100':'' " class="p-4 rounded-lg flex flex-row items-center gap-2">
-      <div class="mb-auto">
-        @switch (item?.role) {
-        @case ('user') { <mat-icon>person_outline</mat-icon> }
-        @case ('model') { <img src="./assets/gemini_sparkle.svg" class="w-7 min-w-7"> }
-        }
-      </div>
-      <span>{{item?.text}}</span>
-      @if(item.image){
-      <div>
-        <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg mb-auto">
-          <img [src]="item.image" alt="Selected Image" class="rounded-lg">
-        </div>
+  <div class="w-full h-full flex justify-center">
+    <div class="flex flex-col w-[600px] h-full">
+      @if(chatHistory.length==0 && prompt ==''){
+      <div class="flex flex-col opacity-50 gap-3">
+        <span class="text-4xl">Hi.</span>
+        <span class="text-3xl">How can we help you.</span>
       </div>
       }
-    </div>
-    }
-
-    <div [class]="!prompt?'hidden':'inline'" id="prompt">
-      <div class="p-4 rounded-lg flex flex-row items-center gap-2">
-        <div class="mb-auto">
-          <mat-icon>person_outline</mat-icon>
+  
+      <div class=" w-full overflow-auto mb-5">
+        @for (item of chatHistory; track $index) {
+        <div [class]="item?.role=='model'?'bg-gray-100':'' " class="p-4 rounded-lg flex flex-row items-center gap-2">
+          <div class="mb-auto">
+            @switch (item?.role) {
+            @case ('user') { <mat-icon>person_outline</mat-icon> }
+            @case ('model') { <img src="./assets/gemini_sparkle.svg" class="w-7 min-w-7"> }
+            }
+          </div>
+          <span>{{item?.text}}</span>
+          @if(item.image){
+          <div>
+            <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg mb-auto">
+              <img [src]="item.image" alt="Selected Image" class="rounded-lg">
+            </div>
+          </div>
+          }
         </div>
-        <span>{{prompt}}</span>
+        }
+  
+        <div [class]="!prompt?'hidden':'inline'" id="prompt">
+          <div class="p-4 rounded-lg flex flex-row items-center gap-2">
+            <div class="mb-auto">
+              <mat-icon>person_outline</mat-icon>
+            </div>
+            <span>{{prompt}}</span>
+          </div>
+          <div class="p-4 rounded-lg flex flex-row items-center gap-2 bg-gray-100">
+            <div class="mb-auto">
+              <img src="./assets/gemini_sparkle.svg" class="w-7">
+            </div>
+            <div class="w-full">
+              <ngx-skeleton-loader [theme]="{ height: '12px', 'background-color': '#C3D9E3'}" />
+              <ngx-skeleton-loader [theme]="{ width: '80%', height: '12px', 'background-color': '#DAE5EB'}" />
+            </div>
+            @if(promptImage){
+            <div>
+              <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg mb-auto">
+                <img [src]="promptImage" alt="Selected Image" class="rounded-lg">
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+  
       </div>
-      <div class="p-4 rounded-lg flex flex-row items-center gap-2 bg-gray-100">
-        <div class="mb-auto">
-          <img src="./assets/gemini_sparkle.svg" class="w-7">
-        </div>
-        <div class="w-full">
-          <ngx-skeleton-loader [theme]="{ height: '12px', 'background-color': '#C3D9E3'}" />
-          <ngx-skeleton-loader [theme]="{ width: '80%', height: '12px', 'background-color': '#DAE5EB'}" />
-        </div>
-        @if(promptImage){
+  
+      <div class="mt-auto w-full">
+        @if(promptImage && waitingResponse===false){
         <div>
-          <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg mb-auto">
+          <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg">
+            <mat-icon class="!absolute !end-[-12px] !top-[-12px] cursor-pointer opacity-50 hover:opacity-80"
+              (click)="deleteImage()">cancel</mat-icon>
             <img [src]="promptImage" alt="Selected Image" class="rounded-lg">
           </div>
         </div>
+  
         }
+        <div class="w-full custom-field">
+          <mat-form-field class="!w-full" appearance="outline">
+            <textarea matInput cdkTextareaAutosize #promptInput placeholder="Write your question here"></textarea>
+            <button mat-icon-button matSuffix class="!mt-auto" (click)="selectPhoto()" [disabled]="promptImage">
+              <mat-icon outline>add_photo_alternate</mat-icon>
+            </button>
+            <button mat-icon-button matSuffix [disabled]="!promptInput.value"
+              (click)="sendPrompt(promptInput.value); promptInput.value=''">
+              <mat-icon outline>send_outline</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
       </div>
     </div>
-
   </div>
+  
 
-  <div class="mt-auto">
-    @if(promptImage && waitingResponse===false){
-    <div>
-      <div class="w-[100px] relative p-2 bg-gray-200 rounded-lg">
-        <mat-icon class="!absolute !end-[-12px] !top-[-12px] cursor-pointer opacity-50 hover:opacity-80"
-          (click)="deleteImage()">cancel</mat-icon>
-        <img [src]="promptImage" alt="Selected Image" class="rounded-lg">
-      </div>
-    </div>
-
-    }
-    <div class="w-full custom-field">
-      <mat-form-field class="!w-full" appearance="outline">
-        <textarea matInput cdkTextareaAutosize #promptInput placeholder="Write your question here"></textarea>
-        <button mat-icon-button matSuffix class="!mt-auto" (click)="selectPhoto()" [disabled]="promptImage">
-          <mat-icon outline>add_photo_alternate</mat-icon>
-        </button>
-        <button mat-icon-button matSuffix [disabled]="!promptInput.value"
-          (click)="sendPrompt(promptInput.value); promptInput.value=''">
-          <mat-icon outline>send_outline</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-  </div>
 
 </div>
