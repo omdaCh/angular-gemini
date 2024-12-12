@@ -2,6 +2,8 @@
 
 This project demonstrates how to create an AI-Powered chatbot application using Angular and google Gemini pro. The chatbot web application can handle text and image prompting.
 
+![Chatbot Demo](media/demo.gif)
+
 ## 🛠️ Key Technologies
 - **Frontend** Angular 17 
 - **AI Integration:** Google Generative AI 
