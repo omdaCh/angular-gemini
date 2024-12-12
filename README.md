@@ -1,27 +1,42 @@
-# GoogleAiGeminiAngular
+# Angular + Gemini
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+This project demonstrates how to integrate CKEditor (open-source version) into an Angular application. It explores advanced features such as custom theming, editor enabling/disabling, and localization with support for English and Arabic.
 
-## Development server
+## 🛠️ Key Technologies
+- **Frontend** Angular 17 
+- **AI Integration:** Google Generative AI 
+- **UI Components** Angular Material
+- **Styling:** Tailwind CSS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 📦 Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
+Ensure you have the following installed:
+- **Node.js**  	^18.13.0
+- **Angular CLI** ^17.0.0
 
-## Build
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/omdaCh/angular-gemini.git
+   cd angular-gemini
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Install dependencies:
+   ```bash
+   npm install
 
-## Running unit tests
+3. Run the application:
+   Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ℹ️ More Information
+For a detailed explanation and step-by-step guide, you can read the full article on Medium https://medium.com/@chemakhi.imad/building-an-ai-powered-chatbot-with-angular-and-gemini-e2e123b67d5e.
 
-## Running end-to-end tests
+## 🤝 Contributions
+Contributions are welcome! Feel free to submit a pull request or open an issue to suggest improvements.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 📧 Contact
+For questions or suggestions, reach out to chemakhi.imad@gmail.com or connect with me on LinkedIn https://www.linkedin.com/in/imad-chemakhi-371a45218.
