@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
 import {
   ChatSession,
   GoogleGenerativeAI,
@@ -10,27 +8,22 @@ import {
   HarmCategory,
 } from '@google/generative-ai';
 import { environment } from '../environments/environment.development';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatChipsModule } from '@angular/material/chips';
-
 import { FormsModule } from '@angular/forms';
-
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgxSkeletonLoaderModule, MatChipsModule],
+  imports: [CommonModule, FormsModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgxSkeletonLoaderModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  title = 'google-ai-gemini-angular';
 
   geminiProChat: any;
   geminiVisionProChat: any;
@@ -42,15 +35,14 @@ export class AppComponent implements OnInit {
 
   chatHistory: { role: 'model' | 'user', text: string, image?: any }[] = [];
 
-  constructor(
-    public http: HttpClient,
-  ) { }
+  http:HttpClient = inject(HttpClient);
+
+
 
   ngOnInit(): void {
     this.geminiProChat = this.getGeminiProChat();
     this.geminiVisionProChat = this.getGeminiVisionProChat();
   }
-
 
   getGeminiProChat(): ChatSession {
     // Gemini Client

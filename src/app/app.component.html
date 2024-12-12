@@ -1,25 +1,26 @@
 <div class="flex flex-col w-full h-full absolute top-0 start-0 p-4 ">
   <div class="flex flex-row items-end gap-1">
-    <img src="./assets/Angular_Logo.svg" class="w-[150px]">
+    <img src="./assets/Angular_Logo.svg" class="w-[130px]">
     <span class="text-3xl opacity-50">+</span>
-    <img src="./assets/Google_Gemini_logo.svg" class="w-[100px] !mb-1">
+    <img src="./assets/Google_Gemini_logo.svg" class="w-[90px] !mb-1">
     <button mat-stroked-button class="!ms-auto" (click)="createNewChat()"
       [disabled]="chatHistory.length==0 && prompt ==''">
       <mat-icon>add</mat-icon>
-      <span>New converstion</span></button>
-
+      <span>New</span>
+      <span class="sm:inline hidden"> converstion</span>
+    </button>
   </div>
   <mat-divider class="!mt-2 !mb-4"></mat-divider>
-  <div class="w-full h-full flex justify-center">
+  <div class="w-full h-full flex flex-row justify-center gap-4 overflow-auto">
+    <mat-divider [vertical]="true"></mat-divider>
     <div class="flex flex-col w-[600px] h-full">
       @if(chatHistory.length==0 && prompt ==''){
       <div class="flex flex-col opacity-50 gap-3">
         <span class="text-4xl">Hi.</span>
-        <span class="text-3xl">How can we help you.</span>
+        <span class="text-3xl">How can we help you ?.</span>
       </div>
       }
-  
-      <div class=" w-full overflow-auto mb-5">
+      <div class=" w-full overflow-auto mb-5 p-2">
         @for (item of chatHistory; track $index) {
         <div [class]="item?.role=='model'?'bg-gray-100':'' " class="p-4 rounded-lg flex flex-row items-center gap-2">
           <div class="mb-auto">
@@ -91,8 +92,8 @@
         </div>
       </div>
     </div>
+    <mat-divider [vertical]="true"></mat-divider>
   </div>
-  
-
 
 </div>
+

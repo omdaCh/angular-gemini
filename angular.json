@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "google-ai-gemini-angular": {
+    "angular-gemini": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/google-ai-gemini-angular",
+            "outputPath": "dist/angular-gemini",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "google-ai-gemini-angular:build:production"
+              "buildTarget": "angular-gemini:build:production"
             },
             "development": {
-              "buildTarget": "google-ai-gemini-angular:build:development"
+              "buildTarget": "angular-gemini:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "google-ai-gemini-angular:build"
+            "buildTarget": "angular-gemini:build"
           }
         },
         "test": {
