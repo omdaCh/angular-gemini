@@ -1,6 +1,6 @@
 # Angular + Gemini
 
-This project demonstrates how to integrate CKEditor (open-source version) into an Angular application. It explores advanced features such as custom theming, editor enabling/disabling, and localization with support for English and Arabic.
+This project demonstrates how to create an AI-Powered chatbot application using Angular and google Gemini pro. The chatbot web application can handle text and image prompting.
 
 ## 🛠️ Key Technologies
 - **Frontend** Angular 17 
